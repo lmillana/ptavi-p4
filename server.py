@@ -27,6 +27,5 @@ if __name__ == "__main__":
     print("Lanzando servidor UDP de eco...")
     try:
         serv.serve_forever()
-    except KeyboardInterrupt: #Control + C
+    except KeyboardInterrupt:
         print("Finalizado servidor")
-
