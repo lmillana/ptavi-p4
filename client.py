@@ -20,7 +20,8 @@ with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as my_socket:
     #Creamos la petición SIP:
     print('Enviando:', Method, 'sip:', Line, 'SIP/2.0\r\n\r\n')
     #Enviamos la petición:
-    my_socket.send(bytes(Method, 'utf-8') + b' sip:'+ bytes(Line,'utf-8') + b' SIP/2.0\r\n\r\n')
+    my_socket.send(bytes(Method, 'utf-8') + b' sip:' + bytes(Line, 'utf-8'))
+    my_socket.send(b' SIP/2.0\r\n\r\n')
     data = my_socket.recv(1024)
     print('Recibido? -- ', data.decode('utf-8'))
 
