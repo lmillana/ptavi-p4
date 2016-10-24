@@ -18,7 +18,7 @@ class SIPRegisterHandler(socketserver.DatagramRequestHandler):
         Ejecuta cada vez que recibimos una petición al servidor.
         """
         line = self.rfile.read()
-        
+
         list = line.decode('utf-8').split(' ')
         if list[0] == 'REGISTER':
             name = list[1].split(':')[1]
