@@ -22,9 +22,17 @@ class SIPRegisterHandler(socketserver.DatagramRequestHandler):
         list = line.decode('utf-8').split(' ')
         if list[0] == 'REGISTER':
             name = list[1].split(':')[1]
+            exp = int(list[2].split(':')[1])
+
             self.dicc[name] = self.client_address[0]
-            print(self.dicc)
+
+            if exp == 0:
+                del self.dicc[name]
             self.wfile.write(b'SIP/2.0 OK\r\n\r\n')
+            print(self.dicc)
+        if not line: 
+            print('Usage: client.py ip puerto register sip_addr expires_value')
+
 
 if __name__ == "__main__":
     serv = socketserver.UDPServer(('', 6001), SIPRegisterHandler)
